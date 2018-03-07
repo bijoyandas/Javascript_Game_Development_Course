@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Learning Javascript Objects</title>
+  </head>
+
+  <body>
+    <canvas height="500" width="500" id="ctx" style="border:1px solid #000000"/>
+    <script>
+      var ctx = document.getElementById('ctx').getContext('2d');
+
+      var square = {
+        x:100,
+        y:100,
+        height:200,
+        width:300,
+        color:'red'
+      };
+
+      ctx.save();
+
+      ctx.fillStyle = square.color;
+      ctx.fillRect(square.x,square.y,square.width,square.height);
+
+      ctx.restore();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Canvas Intro</title>
+  </head>
+  <body>
+    <canvas height="500" width="500" id="ctx" style="border:1px solid #000000"/>
+    <script>
+      var ctx = document.getElementById('ctx').getContext('2d');
+
+      document.getElementById('ctx').onmousedown = function() {
+        ctx.fillStyle = "blue";
+        ctx.fillRect(100,100,50,50);
+      }
+
+      document.getElementById('ctx').onmouseup = function() {
+        ctx.fillStyle = "red";
+        ctx.fillRect(100,100,50,50);
+      }
+
+      document.onkeydown = function(event) {
+        if (event.keyCode == 65){
+          ctx.fillText("Pressed 'A'",200,200);
+        }
+        if (event.keyCode == 38) {
+          ctx.fillText("Pressed Up arrow",200,200);
+        }
+      }
+
+    </script>
+  </body>
+</html>
