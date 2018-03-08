@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Shooter Games</title>
+  </head>
+
+  <body>
+    <canvas id="ctx" height="500" width="500" style="border:2px solid #000000"/>
+    <script type="text/javascript">
+
+      var ctx = document.getElementById('ctx').getContext('2d');
+      var bulletList,timer,bulletSound;
+
+      var shooter = {
+        x:250,
+        y:400,
+        height:20,
+        width:30
+      }
+
+      var bullet = {
+        height:10,
+        width:2
+      }
+
+      drawShooter = function() {
+        ctx.save();
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(shooter.x,shooter.y,shooter.width,shooter.height);
+        ctx.restore();
+      }
+
+      sound = function(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+            this.sound.play();
+        }
+        this.stop = function(){
+            this.sound.pause();
+        }
+      }
+
+      bulletSound = new sound("fire.mp3");
+
+      drawBullet = function(b,i) {
+        ctx.save();
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(b.x,b.y,bullet.width,bullet.height);
+        ctx.restore();
+      }
+
+      updateBullets = function() {
+        for(key in bulletList) {
+          bulletList[key].y -= 10;
+        }
+      }
+
+      update = function() {
+        ctx.clearRect(0,0,500,500);
+        if (timer % 200 == 0) {
+          var bX = Math.abs(Math.random()*30)+shooter.x;
+          var bY = shooter.y;
+          bulletList.push({x:bX,y:bY});
+          bulletSound.play();
+        }
+        bulletList.forEach(drawBullet);
+        drawShooter();
+        timer += 10;
+        updateBullets();
+      }
+
+      startGame = function() {
+        bulletList = [];
+        timer = 0;
+        setInterval(update,40);
+      }
+
+      startGame();
+
+    </script>
+  </body>
+</html>
