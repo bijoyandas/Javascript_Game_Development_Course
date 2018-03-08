@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Shooter Games</title>
+  </head>
+
+  <body>
+    <canvas id="ctx" height="500" width="500" style="border:2px solid #000000"/>
+    <script type="text/javascript">
+
+      var ctx = document.getElementById('ctx').getContext('2d');
+      var bulletList;
+
+      var shooter = {
+        x:250,
+        y:400,
+        height:20,
+        width:30
+      }
+
+      var bullet = {
+        height:10,
+        width:2
+      }
+
+      drawShooter = function() {
+        ctx.save();
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(shooter.x,shooter.y,shooter.width,shooter.height);
+        ctx.restore();
+      }
+
+      drawBullet = function(b,i) {
+        ctx.save();
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(b.x,b.y,bullet.width,bullet.height);
+        ctx.restore();
+      }
+
+      startGame = function() {
+        bulletList = [];
+        drawShooter();
+      }
+
+      startGame();
+
+    </script>
+  </body>
+</html>
