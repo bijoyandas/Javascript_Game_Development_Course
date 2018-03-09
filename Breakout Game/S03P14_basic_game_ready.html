@@ -138,6 +138,7 @@
         if (base.lives < 0 || score == 330) {
           clearInterval(intervalVar);
           running = false;
+          ctx.fillText('Game Over! Click to restart',150,250);
         }
       }
 
